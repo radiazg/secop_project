@@ -216,3 +216,6 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 >>>>>>> e134cf54a3b736f9f457ae287b10c7056acf1a37
+
+#Data
+src/data/make_dataset.py
