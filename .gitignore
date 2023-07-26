@@ -219,3 +219,7 @@ cython_debug/
 
 #Data
 src/data/
+
+#ML Models
+*.joblib
+*.sio
