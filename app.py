@@ -1,3 +1,4 @@
+import pandas as pd
 import streamlit as st
 from joblib import load
 import numpy as np
@@ -55,7 +56,7 @@ pred_button = st.button('Predecir')
 
 # Cuando el usuario haga click en el botón 'Predecir', obtén la predicción del modelo y muéstrala.
 if pred_button:
-    datos = np.array([departamento, orden, entidadCentralizada,modalidadContratacion, destinoGasto, generoRepresentante, esServicioPublico, esRecursosPropios, esGrupo, esPrestacionServicios, esPyme  , estaLiquidado, esObligacionAmbiental, esPostconflicto, diasAdicionados, valorContrato, valorFacturado, valorPendientePago, saldoCDP]).reshape(1,-1)
-    prediccion = model.predict(datos)
+    datos = pd.DataFrame([[departamento, orden, entidadCentralizada,modalidadContratacion, destinoGasto, generoRepresentante, esServicioPublico, esRecursosPropios, esGrupo, esPrestacionServicios, esPyme  , estaLiquidado, esObligacionAmbiental, esPostconflicto, diasAdicionados, valorContrato, valorFacturado, valorPendientePago, saldoCDP]], columns=['Departamento','Orden','Entidad Centralizada','Modalidad de Contratacion','Destino Gasto','Género Representante Legal','EsServicioPublico','EsRecursosPropios','EsGrupo','EsPrestacionServicios','EsPyme','EstaLiquidado','EsObligacionAmbiental','Es PostConflicto','Dias Adicionados','Valor del Contrato','Valor Facturado','Valor Pendiente de Pago','Saldo CDP'])
+    prediccion = model.predict_proba(datos)
 
-    st.write('La predicción del modelo es: ', prediccion)
+    st.write('La probabilidad que el contrato se cierre es de: ', prediccion)
