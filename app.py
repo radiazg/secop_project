@@ -23,7 +23,7 @@ opciones = ["Distrito Capital de Bogotá", "Valle del Cauca", "Antioquia", "Sant
 departamento = st.selectbox('Departamento:', opciones)
 opciones = ['Territorial','Nacional','Corporación Autónoma']
 orden = st.selectbox('Orden:', opciones)
-opciones = ['Decscentralizada','Centralizada']
+opciones = ['Descentralizada','Centralizada']
 entidadCentralizada = st.selectbox('Entidad Centralizada:', opciones)
 opciones = ['Contratación directa','Contratación régimen especial','Mínima cuantía','Selección Abreviada de Menor Cuantía','Selección abreviada subasta inversa','Contratación Directa (con ofertas)']
 modalidadContratacion = st.selectbox('Modalidad de Contratación:', opciones)
@@ -59,4 +59,4 @@ if pred_button:
     datos = pd.DataFrame([[departamento, orden, entidadCentralizada,modalidadContratacion, destinoGasto, generoRepresentante, esServicioPublico, esRecursosPropios, esGrupo, esPrestacionServicios, esPyme  , estaLiquidado, esObligacionAmbiental, esPostconflicto, diasAdicionados, valorContrato, valorFacturado, valorPendientePago, saldoCDP]], columns=['Departamento','Orden','Entidad Centralizada','Modalidad de Contratacion','Destino Gasto','Género Representante Legal','EsServicioPublico','EsRecursosPropios','EsGrupo','EsPrestacionServicios','EsPyme','EstaLiquidado','EsObligacionAmbiental','Es PostConflicto','Dias Adicionados','Valor del Contrato','Valor Facturado','Valor Pendiente de Pago','Saldo CDP'])
     prediccion = model.predict_proba(datos)
 
-    st.write('La probabilidad que el contrato se cierre es de: ', prediccion)
+    st.markdown('La probabilidad que el contrato se cierre es de: {:.1%}'.format(prediccion[0][1]))
