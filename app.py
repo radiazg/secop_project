@@ -67,5 +67,9 @@ pred_button = st.button('Predecir')
 if pred_button:
     datos = pd.DataFrame([[departamento, orden, entidadCentralizada,modalidadContratacion, destinoGasto, generoRepresentante, esServicioPublico, esRecursosPropios, esGrupo, esPrestacionServicios, esPyme  , estaLiquidado, esObligacionAmbiental, esPostconflicto, diasAdicionados, valorContrato, valorFacturado, valorPendientePago, saldoCDP]], columns=['Departamento','Orden','Entidad Centralizada','Modalidad de Contratacion','Destino Gasto','Género Representante Legal','EsServicioPublico','EsRecursosPropios','EsGrupo','EsPrestacionServicios','EsPyme','EstaLiquidado','EsObligacionAmbiental','Es PostConflicto','Dias Adicionados','Valor del Contrato','Valor Facturado','Valor Pendiente de Pago','Saldo CDP'])
     prediccion = model.predict_proba(datos)
+    prediction_bool = model.predict(datos)
+    prediction_word = f"{'SI' if prediction_bool[0] == True else 'NO'}"
 
+
+    st.markdown('#### El contarto {} se va a CERRAR'.format(prediction_word))
     st.markdown('#### La probabilidad que el contrato se cierre es de: {:.1%}'.format(prediccion[0][1]))
