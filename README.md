@@ -22,14 +22,6 @@ Un contrato cerrado es aquel que ha finalizado y ya no está vigente, y que las 
 
 Al poder predecir la probabilidad de cierre de un contrato, los entes de control podrían poner la lupa, sobre todos aquellos contratos que tengan una probabilidad de cierre baja para poder tomar decisiones de manera anticipada, y poder mitigar posibles riesgos o corregir acciones para incrementar esta probabilidad de que culmine satisfactoriamente.
 
-## Información sobre los datos utilizados para el entrenamiento.
-
-Los datos fuente fueron descargados del portal de Datos Abiertos del Gobierno de Colombia que están disponible a todo el público.
-https://www.datos.gov.co/Gastos-Gubernamentales/SECOP-II-Contratos-Electr-nicos/jbjy-vk9h
-El archivo original pesa 3.62 Gb, por lo tanto, este archivo fue procesado inicialmente para descartar varias columnas de datos que no eran relevante para nuestra predicción y fue realizado en el notebook Filtrado_datos_secop generando un archivo ideal (datos_filtradosv1.csv) para iniciar con el tratamiento de datos.
-Diccionario de datos
-https://www.datos.gov.co/api/views/jbjy-vk9h/files/839439f9-b3b9-4e53-a28d-ab82e752a1dc?download=true&filename=Diccionario%20de%20Datos%20Abiertos%202022%20Contratos%20Electronicos.pdf
-
 ## Requisitos y dependencias
 
 - streamlit==1.25.0
@@ -39,12 +31,57 @@ https://www.datos.gov.co/api/views/jbjy-vk9h/files/839439f9-b3b9-4e53-a28d-ab82e
 - numpy==1.25.1
 - Pillow==9.5.0
 
+## Información sobre los datos utilizados para el entrenamiento.
+
+Los datos fuente fueron descargados del portal de Datos Abiertos del Gobierno de Colombia que están disponible a todo el público.
+https://www.datos.gov.co/Gastos-Gubernamentales/SECOP-II-Contratos-Electr-nicos/jbjy-vk9h
+El archivo original pesa 3.62 Gb, por lo tanto, este archivo fue procesado inicialmente para descartar varias columnas de datos que no eran relevante para nuestra predicción y fue realizado en el notebook Filtrado_datos_secop generando un archivo ideal (datos_filtradosv1.csv) para iniciar con el tratamiento de datos.
+
+Para ejecutar el notebook debe descargar el archivo fuente y dejarlo en la carpeta data/raw
+
+Diccionario de datos
+https://www.datos.gov.co/api/views/jbjy-vk9h/files/839439f9-b3b9-4e53-a28d-ab82e752a1dc?download=true&filename=Diccionario%20de%20Datos%20Abiertos%202022%20Contratos%20Electronicos.pdf
+
+### Instalar librerías requeridas para el proyecto
+
+Antes de instalar las librerías, debe generar un entorno virtual de python como buena práctica.  A continuación en nuestro terminal ejecutamos:
+
+```
+python3 -m venv venv
+```
+
+Inicializar el entrono virtual
+
+```
+source venv/bin/activate
+```
+
+Luego instalar las librerías
+
+```
+pip install -r requirements.txt
+```
+
+## Generar Modelo
+
+Una vez instalado las librerías necesarias, debe ejecutar el notebook `Secop.ipynb` que se encuantra en la carpeta `notebooks`
+
+Este notebook genera un archivo .joblib en la carpeta `models`, debe copiar este archivo y pegarlo en el path principal del proyecto al nivel del archivo `app.py`
+
+## Lanzar la web app de Streamlit
+
+En el terminal debemos ejecutar
+
+```
+streamlit run app.py
+```
 
 ## Organización del proyecto
 
 
     ├── LICENSE
     ├── Makefile           <- Makefile with commands like `make data` or `make train`
+    ├── app.py             <- Aplicacion de streamlit
     ├── README.md          <- README para los desarrolladores que usen este proyecto
     ├── data
     │   ├── external       <- Datos de sitios de terceros
@@ -83,6 +120,8 @@ https://www.datos.gov.co/api/views/jbjy-vk9h/files/839439f9-b3b9-4e53-a28d-ab82e
     │       └── visualize.py
     │
     └── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
+
+
 
 
 --------
